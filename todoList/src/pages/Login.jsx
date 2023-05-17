@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import Input from "../components/Input";
 import { useNavigate } from "react-router-dom";
+import axios from 'axios'
 
 export default function Login(){
 
@@ -20,12 +21,12 @@ export default function Login(){
 
         try{
             const response = await axios.post(url, userRegister)
-            console.log(response.status);
+            // console.log(response.status);
             localStorage.setItem('user', JSON.stringify(response.data))
             navigate("/todos")
-        }
-        catch(err) {
-            console.error(err)
+        }   
+        catch(err) { 
+            alert('Tupoy')
         }
     }
 

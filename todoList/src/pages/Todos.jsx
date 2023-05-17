@@ -3,20 +3,10 @@
 
 export default function Todos(){
 
-//     const nameRef = useRef()
-//     const usernameRef = useRef()
-//     const passwordRef = useRef()
 
-//     return(
-//         <div className="Login">
+    return(
+        <h1>fuck</h1>
+    )
 
-//             <div className="box">
-//                 <Input ref={nameRef} type="text" placeholder="Name"/>
-//                 <Input ref={usernameRef} type="text" placeholder="Username"/>   
-//                 <Input ref={passwordRef} type="text" placeholder="password"/>
-//             </div>
-
-//         </div>
-//     )
 }
 
