@@ -11,7 +11,7 @@ export default function Login(){
     const passwordRef = useRef()
 
     const requestLogin = async  () =>{
-        const url = 'https://faveo.uz:8080/api/v1/account'
+        const url = 'http://faveo.uz:8080/api/v1/account'
         const userRegister = {
             name: nameRef.current.value,
             username: usernameRef.current.value,
