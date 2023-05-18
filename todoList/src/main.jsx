@@ -8,22 +8,22 @@ import Todos from './pages/Todos.jsx';
 
 const rootRouter = createBrowserRouter([
   {
-    path:"/",
+    path: "/",
     element: <Navigate to={"/todos"} />
   },
   {
-    path:"/login",
-    element:<Login/>
+    path: "/login",
+    element: <Login />
   },
   {
-    path:"/todos",
-    element:<Todos/>
+    path: "/todos",
+    element: <Todos />
   }
 ])
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-    <RouterProvider router={rootRouter}>
-      <App />
-    </RouterProvider>
+  <RouterProvider router={rootRouter}>
+    <App />
+  </RouterProvider>
 
 )

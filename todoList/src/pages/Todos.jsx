@@ -36,17 +36,6 @@ export default function Todos() {
                 }
             })
             setSatate([...state, responsee.data])
-            // console.log(response);
-            // console.log(response.status);
-            // let poxxuy = true
-
-            // if (user == "Wrong password") {
-            //     alert('Oldin bu User dan Akkaunt ochilgan')
-            //     poxxuy = false
-            // }
-            // if ( poxxuy == true) {
-            //     navigate("/todos")
-            // }
         }
         catch (err) {
             console.log(err)
@@ -60,7 +49,7 @@ export default function Todos() {
 
         try {
             const user = JSON.parse(localStorage.getItem('user'))
-            const responsee = await axios.delete(url + `/${id}`,  {
+            const responsee = await axios.delete(url + `/${id}`, {
                 headers: {
                     'Authorization': "Bearer " + user.token
                 }

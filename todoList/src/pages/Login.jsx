@@ -33,7 +33,7 @@ export default function Login() {
                 alert('Oldin bu User dan Akkaunt ochilgan')
                 poxxuy = false
             }
-            if ( poxxuy == true) {
+            if (poxxuy == true) {
                 navigate("/todos")
             }
         }
