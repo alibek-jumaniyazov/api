@@ -1,0 +1,8 @@
+.boxxx{
+    display: flex; 
+    width: 200px;
+    justify-content: space-between;
+    margin: 20px 18px;
+    height: 40px;
+
+}

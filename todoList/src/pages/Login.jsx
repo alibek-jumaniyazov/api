@@ -3,7 +3,7 @@ import Input from "../components/Input";
 import { useNavigate } from "react-router-dom";
 import axios from 'axios'
 
-export default function Login(){
+export default function Login() {
 
     const navigate = useNavigate()
 
@@ -19,23 +19,35 @@ export default function Login(){
             password: passwordRef.current.value,
         }
 
-        try{
+        try {
             const response = await axios.post(url, body)
+            // console.log(response);
             // console.log(response.status);
             localStorage.setItem('user', JSON.stringify(response.data))
-            navigate("/todos")
-        }   
-        catch(err) { 
-            alert('Tupoy')
+
+            const user = JSON.parse(localStorage.getItem('user'))
+
+            let poxxuy = true
+
+            if (user == "Wrong password") {
+                alert('Oldin bu User dan Akkaunt ochilgan')
+                poxxuy = false
+            }
+            if ( poxxuy == true) {
+                navigate("/todos")
+            }
+        }
+        catch (err) {
+            alert('4 harfdan kop bolishi kerak')
         }
     }
 
-    return(
+    return (
         <div className="Login">
             <div className="box">
-                <Input type="text" placeholder="Name" ref={nameRef}/>
-                <Input type="text" placeholder="Username" ref={usernameRef}/>
-                <Input type="text" placeholder="password" ref={passwordRef}/>
+                <Input type="text" placeholder="Name" ref={nameRef} />
+                <Input type="text" placeholder="Username" ref={usernameRef} />
+                <Input type="text" placeholder="password" ref={passwordRef} />
                 <button onClick={() => requestLogin()}>login</button>
             </div>
         </div>
