@@ -1,8 +1,12 @@
 import { useEffect, useRef, useState } from "react";
 import axios from 'axios'
+import Modal from "../components/Modal";
+import Box from "../components/Box";
+import Add from "../components/Add";
 
 
 export default function Todos() {
+
 
     const url = 'http://faveo.uz:8080/api/v1/todos'
     const user = JSON.parse(localStorage.getItem('user'))
@@ -44,10 +48,10 @@ export default function Todos() {
         setTodos()
     }
 
-
     const requestDelet = async (id) => {
 
         try {
+
             const user = JSON.parse(localStorage.getItem('user'))
             const responsee = await axios.delete(url + `/${id}`, {
                 headers: {
@@ -68,20 +72,41 @@ export default function Todos() {
 
 
     const [todos, setTodos] = useState()
+    const [modal, setModal] = useState({
+        open: false,
+        data: {}
+    })
+
+    async function putData(id) {
+        console.log(id);
+        const body = {
+            title: up.value,
+        }
+
+        try {
+            const user = JSON.parse(localStorage.getItem('user'))
+            const responsePut = await axios.put(url + `/${id}`, body, {
+                headers: {
+                    'Authorization': "Bearer " + user.token
+                }
+            })
+            const newTodo = responsePut.data
+            setSatate(prev => prev.map(todo => todo.id == newTodo.id ? newTodo : todo))
+        }
+        catch (err) {
+            console.log(err)
+        }
+
+    }
 
     return (
         <>
             <h1>Salom hurmatli {user.name}</h1>
-            <input type="text" ref={nameRef} value={todos} />
-            <button onClick={() => requestLogin()}>add</button>
-
+            <Add nameRef={nameRef} todos={todos} requestLogin={requestLogin} />
+            <Modal modal={modal} setSatate={setSatate} putData={putData} setModal={setModal} />
             {
                 state.map(item => (
-                    <div className="boxxx" key={item.id}>
-                        <h4>{item.title}</h4> <button onClick={() => requestDelet(item.id)}>none</button>
-
-                    </div>
-
+                    <Box item={item} requestDelet={requestDelet} setModal={setModal} />
                 ))
             }
         </>
