@@ -8,10 +8,43 @@ import Add from "../components/Add";
 export default function Todos() {
 
 
+    // Api url
+
     const url = 'http://faveo.uz:8080/api/v1/todos'
+
+    // LocalStorage accaunt info
+
     const user = JSON.parse(localStorage.getItem('user'))
 
+
+
+
+    // States
+
     const [state, setSatate] = useState([])
+    const [todos, setTodos] = useState()
+    const [modal, setModal] = useState({
+        open: false,
+        data: {}
+    })
+
+    // States end
+
+    
+
+
+    // Ref
+
+    const nameRef = useRef()
+
+    // Ref end
+
+
+
+
+
+
+    // Get medoth
 
     useEffect(() => {
         axios.get(url, {
@@ -22,10 +55,12 @@ export default function Todos() {
 
     }, [])
 
+    // end Get medoth
 
 
 
-    const nameRef = useRef()
+
+    // Post medoth
 
     const requestLogin = async () => {
         const body = {
@@ -47,6 +82,14 @@ export default function Todos() {
 
         setTodos()
     }
+
+    // end Post medoth
+
+
+
+
+
+    // Delete medoth
 
     const requestDelet = async (id) => {
 
@@ -70,46 +113,20 @@ export default function Todos() {
     }
 
 
+    // end Delete medoth
 
-    const [todos, setTodos] = useState()
-    const [modal, setModal] = useState({
-        open: false,
-        data: {}
-    })
-
-    async function putData(id) {
-        console.log(id);
-        const body = {
-            title: up.value,
-        }
-
-        try {
-            const user = JSON.parse(localStorage.getItem('user'))
-            const responsePut = await axios.put(url + `/${id}`, body, {
-                headers: {
-                    'Authorization': "Bearer " + user.token
-                }
-            })
-            const newTodo = responsePut.data
-            setSatate(prev => prev.map(todo => todo.id == newTodo.id ? newTodo : todo))
-        }
-        catch (err) {
-            console.log(err)
-        }
-
-    }
 
     return (
-        <>
+        <div >
             <h1>Salom hurmatli {user.name}</h1>
             <Add nameRef={nameRef} todos={todos} requestLogin={requestLogin} />
-            <Modal modal={modal} setSatate={setSatate} putData={putData} setModal={setModal} />
+            <Modal modal={modal} setSatate={setSatate} setModal={setModal} />
             {
                 state.map(item => (
                     <Box item={item} requestDelet={requestDelet} setModal={setModal} />
                 ))
             }
-        </>
+        </div>
 
     )
 

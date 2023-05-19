@@ -1,8 +1,10 @@
 import axios from "axios";
 import { useRef } from "react";
 
-export default function Modal({modal , putData, setModal, setSatate }){
+export default function Modal({modal ,  setModal, setSatate }){
+
     const inputRef = useRef(null)
+
     const url = 'http://faveo.uz:8080/api/v1/todos'
     async function putData(item) {
         const body = {
