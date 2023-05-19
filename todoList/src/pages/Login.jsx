@@ -21,10 +21,7 @@ export default function Login() {
 
         try {
             const response = await axios.post(url, body)
-            // console.log(response);
-            // console.log(response.status);
             localStorage.setItem('user', JSON.stringify(response.data))
-
             const user = JSON.parse(localStorage.getItem('user'))
 
             let poxxuy = true

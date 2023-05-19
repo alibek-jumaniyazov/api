@@ -6,13 +6,15 @@
     height: 40px;
 
 }
-.none{
+
+.none {
     display: none;
     transform: translateX(50px);
     opacity: 0;
     transition: all 0.5s ease;
 }
-.modal{
+
+.modal {
     display: flex;
     position: absolute;
     width: 100%;
@@ -24,7 +26,8 @@
     transition: all 0.5s ease;
     background-color: rgba(0, 0, 0, 0.342);
 }
-.modal2{
+
+.modal2 {
 
     display: flex;
     flex-direction: column;
